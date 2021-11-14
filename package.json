@@ -1,18 +1,18 @@
 {
   "private": false,
-  "name": "@mblabs/docs-docker",
+  "name": "@mblabs/docs-go",
   "version": "0.0.1",
-  "description": "Documentation partials used to generate documentation for Dockerfile/DockerSlim projects",
+  "description": "Documentation partials used to generate documentation for Go projects",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ProfessorManhattan/docs-docker.git"
+    "url": "git+https://github.com/ProfessorManhattan/docs-go.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
-    "url": "https://gitlab.com/megabyte-labs/documentation/dockerfile/-/issues"
+    "url": "https://gitlab.com/megabyte-labs/documentation/go/-/issues"
   },
   "type": "module",
   "scripts": {
@@ -38,10 +38,10 @@
   },
   "keywords": [
     "common",
-    "go",
-    "golang",
     "docs",
     "documentation",
+    "go",
+    "golang",
     "megabytelabs",
     "npm",
     "package",
