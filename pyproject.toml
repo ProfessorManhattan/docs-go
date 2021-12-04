@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "docs-go"
 version = "0.0.1"
-description = "Documentation partials used to generate documentation for Go projects"
+description = "A future store for Go library and CLI documentation partials"
 authors = ["Brian Zalewski <brian@megabyte.space>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://megabyte.space"
-documentation = "https://megabyte.space/docs/documentation/go"
-keywords = ["common", "docs", "documentation", "go", "golang", "mblabs", "megabytelabs", "npm", "package", "partials", "professormanhattan", "shared"]
+documentation = "https://megabyte.space/docs/common/go"
+keywords = ["mblabs", "megabytelabs", "professormanhattan", "washingtondc"]
 include = ["CHANGELOG.md", "LICENSE"]
 classifiers = [
   "Development Status :: 4 - Beta",

@@ -42,6 +42,11 @@
       "command": "bash .config/scripts/vscode.sh && task test:vagrant"
     },
     {
+      "label": "(ci:github:actions:test): Locally test the on-push GitHub Action event (only works for Linux containers)",
+      "type": "shell",
+      "command": "bash .config/scripts/vscode.sh && task ci:github:actions:test"
+    },
+    {
       "label": "(common:clean): Removes optional folders that are cached during various tasks",
       "type": "shell",
       "command": "bash .config/scripts/vscode.sh && task common:clean"
@@ -95,11 +100,6 @@
       "label": "(update:modules): Ensure all submodules in the `.modules/` folder are updated",
       "type": "shell",
       "command": "bash .config/scripts/vscode.sh && task update:modules"
-    },
-    {
-      "label": "(update:services): Update elements of the repository that require API access",
-      "type": "shell",
-      "command": "bash .config/scripts/vscode.sh && task update:services"
     },
     {
       "label": "(update): Refresh the project with the latest upstream code and ensure blueprint data has propagated",
@@ -182,6 +182,11 @@
       "command": "bash .config/scripts/vscode.sh && task git:remove:submodules"
     },
     {
+      "label": "(group:exec): Execute group commands on any group (including repositories in sub-groups)",
+      "type": "shell",
+      "command": "bash .config/scripts/vscode.sh && task group:exec"
+    },
+    {
       "label": "(image:compress): Compress JPG/PNG images via TinyPNG",
       "type": "shell",
       "command": "bash .config/scripts/vscode.sh && task image:compress"
@@ -190,6 +195,11 @@
       "label": "(image:resize): Resize an image",
       "type": "shell",
       "command": "bash .config/scripts/vscode.sh && task image:resize"
+    },
+    {
+      "label": "(init): Ensures project is initialized with upstream files and migrates pre-existing projects",
+      "type": "shell",
+      "command": "bash .config/scripts/vscode.sh && task init"
     },
     {
       "label": "(lint:all): Lint with all available linters",
@@ -397,6 +407,11 @@
       "command": "bash .config/scripts/vscode.sh && task packer:build:vmware"
     },
     {
+      "label": "(prepare): Prepares the project for the normal start command",
+      "type": "shell",
+      "command": "bash .config/scripts/vscode.sh && task prepare"
+    },
+    {
       "label": "(publish:android:beta): Publishes Android app to Firebase beta channel",
       "type": "shell",
       "command": "bash .config/scripts/vscode.sh && task publish:android:beta"
@@ -505,6 +520,11 @@
       "label": "(security:trivy): Analyze the Docker container for security vulnerabilities with Trivy",
       "type": "shell",
       "command": "bash .config/scripts/vscode.sh && task security:trivy"
+    },
+    {
+      "label": "(services): Update elements of the repository that require API access",
+      "type": "shell",
+      "command": "bash .config/scripts/vscode.sh && task services"
     },
     {
       "label": "(start): Set up the project and refresh it with the latest changes",

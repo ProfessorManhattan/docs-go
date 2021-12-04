@@ -1,8 +1,8 @@
 {
   "private": false,
-  "name": "@mblabs/docs-go",
+  "name": "@installdoc/docs-go",
   "version": "0.0.1",
-  "description": "Documentation partials used to generate documentation for Go projects",
+  "description": "A future store for Go library and CLI documentation partials",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -18,45 +18,28 @@
   "scripts": {
     "help": "task --list",
     "prepare": "task common:husky",
+    "repair": "bash <(curl -sS https://install.doctor/repair)",
     "start": "bash .config/start.sh"
   },
   "config": {
     "commitizen": {
-      "path": "cz-conventional-changelog"
+      "path": "node_modules/cz-emoji-conventional"
     }
   },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "optionalDependencies": {
-    "chalk": "^4.1.2",
-    "inquirer": "^8.2.0",
-    "signale": "^1.4.0",
-    "string-break": "^1.2.0"
-  },
+  "dependencies": {},
+  "optionalDependencies": {},
   "devDependencies": {
-    "@commitlint/config-conventional": "^13.1.0",
-    "@mblabs/eslint-config": "^1.0.97",
-    "@mblabs/prettier-config": "^14.14.14",
-    "@mblabs/release-config": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.2.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "handlebars-helpers": "^0.10.0",
-    "semantic-release": "^18.0.0"
+    "@washingtondc/development": "^1.0.2",
+    "@washingtondc/prettier": "^1.0.0",
+    "@washingtondc/release": "^0.0.2",
+    "eslint-config-strict-mode": "^1.0.0",
+    "sleekfast": "^0.0.1"
   },
   "keywords": [
-    "common",
-    "docs",
-    "documentation",
-    "go",
-    "golang",
     "mblabs",
     "megabytelabs",
-    "npm",
-    "package",
-    "partials",
     "professormanhattan",
-    "shared"
+    "washingtondc"
   ],
   "engines": {
     "node": ">=14.18.0"
@@ -65,23 +48,35 @@
     "access": "public"
   },
   "blueprint": {
-    "description": "Documentation partials used to generate documentation for Go projects",
-    "docs": {
-      "link": "https://megabyte.space/docs/documentation/go"
-    },
+    "description": "A future store for Go library and CLI documentation partials",
     "group": "documentation",
-    "name": "Go Documentation",
-    "overview": "This repository contains documentation partials used to generate documentation for Go projects. It uses the partials in conjunction with customizable variables that are used to generate unique documentation that follow the same format for many types of Go projects. When this project is updated, the changes are propagated to the [Go common files repository](https://gitlab.com/megabyte-labs/common/go). From there, common files/documentation are propagated to individual Go projects. By doing this, we are able to keep documentation, configurations, and common files up-to-date from a central location.",
+    "name": "Go Docs",
+    "overview": "This repository is home to documentation partials that are used to generate the documentation for Go-lang libraries and CLIs.",
+    "profile": {
+      "npmjs_organization": "installdoc"
+    },
     "repository": {
       "github": "https://github.com/ProfessorManhattan/docs-go",
       "gitlab": "https://gitlab.com/megabyte-labs/documentation/go"
     },
     "slug": "docs-go",
     "subgroup": "go",
-    "title": "Go Project Documentation Partials"
+    "title": "Go Documentation Partials",
+    "github_id": "R_kgDOGetTWA",
+    "gitlab_project_id": "28711779",
+    "gitlab_group_id": "11096751"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "helpUrl": "https://megabyte.space/docs/contributing/commits"
   },
   "eslintConfig": {
-    "extends": "@mblabs/eslint-config"
+    "extends": "eslint-config-strict-mode",
+    "rules": {
+      "import/no-extraneous-dependencies": "off"
+    }
   },
   "funding": [
     {
@@ -115,7 +110,6 @@
       "task fix:json --"
     ],
     "**/*.sh": [
-      "task fix:shell --",
       "task lint:shell --"
     ],
     "**/*.toml": [
@@ -134,12 +128,12 @@
       "task image:compress --"
     ]
   },
-  "prettier": "@mblabs/prettier-config",
+  "prettier": "@washingtondc/prettier",
   "release": {
     "branches": [
       "master",
       "next"
     ],
-    "extends": "@mblabs/release-config"
+    "extends": "@washingtondc/release"
   }
 }

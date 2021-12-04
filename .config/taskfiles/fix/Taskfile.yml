@@ -3,6 +3,7 @@ version: '3'
 
 vars:
   PRETTIERIGNORE_CONFIG: .config/prettierignore
+  SHELLCHECK_EXCLUDE: SC1091
 
 tasks:
   eslint:
@@ -23,7 +24,12 @@ tasks:
       **Example fixing all JS/TS files in a project:**
       `task fix:js`
     cmds:
-      - '{{.NPX_HANDLE}}eslint -c package.json --no-eslintrc --fix {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
+      - '{{.NPX_HANDLE}}eslint -c package.json --no-eslintrc --format pretty --cache --cache-location .cache/eslintcache
+        --fix {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
+
+  js:
+    cmds:
+      - task: eslint
 
   json:
     deps:
@@ -42,7 +48,8 @@ tasks:
       **Example looping through project:**
       `task fix:json`
     cmds:
-      - '{{.NPX_HANDLE}}eslint --fix --format pretty --ext .json {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
+      - '{{.NPX_HANDLE}}eslint -c package.json --no-eslintrc --cache --cache-location .cache/eslintcache --fix
+        --format pretty --ext .json {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
 
   misc:
     deps:
@@ -176,7 +183,7 @@ tasks:
       to automatically apply Shellcheck's recommendations. It only runs on files that are not in the
       `IGNORED_FOLDERS` variable in `Taskfile.yml`.
 
-      This task is experimental. It may work to get rid of the Shellcheck lintrue errors but the code
+      This task is experimental. It may work to get rid of the Shellcheck lin.config/log errors but the code
       should still be tested since it might break things. Ideally, you should apply Shellcheck's
       recommendations manually.
 
@@ -193,10 +200,10 @@ tasks:
     cmds:
       - |
         {{if .CLI_ARGS}}
-          {{.NPX_HANDLE}}shellcheck -f diff {{.CLI_ARGS}} | git apply
+          {{.NPX_HANDLE}}shellcheck -e {{.SHELLCHECK_EXCLUDE}} -f diff {{.CLI_ARGS}} | git apply
         {{else}}
           find . -type d \( {{.IGNORE_FOLDERS}} \) -prune -o -type f \( -name '*.sh' -o -name '*.sh.j2' \) \
-            -print0 | xargs -0 {{.NPX_HANDLE}}shellcheck -f diff | git apply
+            -print0 | xargs -0 {{.NPX_HANDLE}}shellcheck -e {{.SHELLCHECK_EXCLUDE}} -f diff | git apply
         {{end}}
 
   xml:
@@ -215,7 +222,8 @@ tasks:
       **Example fixing specific `.xml` file(s):**
       `task fix:xml -- 'file_name.xml'`
     cmds:
-      - '{{.NPX_HANDLE}}eslint --fix --format pretty --ext .xml {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
+      - '{{.NPX_HANDLE}}eslint -c package.json --no-eslintrc --cache --cache-location .cache/eslintcache --fix
+        --format pretty --ext .xml {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
 
   yaml:
     desc: Autofix YML files
@@ -292,4 +300,5 @@ tasks:
       **Example fixing specific `.yml` file(s):**
       `task fix:yaml:order -- 'file_name.{yml,yaml}'`
     cmds:
-      - '{{.NPX_HANDLE}}eslint --format pretty --fix --ext yml,yaml {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
+      - '{{.NPX_HANDLE}}eslint -c package.json --no-eslintrc --format pretty --fix --cache
+        --cache-location .cache/eslintcache --ext yml,yaml {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.{{end}}'
